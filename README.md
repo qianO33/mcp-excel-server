@@ -16,7 +16,7 @@ Node.js server implementing Model Context Protocol (MCP) for excel file operatio
 ### NPM Installation
 
 ```shell
-npm install @qianO33/mcp-excel-server
+npm install @qian33/mcp-excel-server
 ```
 
 ## 📚 API Reference
@@ -63,7 +63,7 @@ Add the following configuration to your : `claude_desktop_config.json`
       "command": "npx",
       "args": [
         "-y",
-        "@qianO33/mcp-excel-server",
+        "@qian33/mcp-excel-server",
         "/Users/username/Desktop",
         "/path/to/other/allowed/dir"
       ]
@@ -98,7 +98,7 @@ You can provide sandboxed directories to the server by mounting them to `/projec
         "command": "npx",
         "args": [
           "-y",
-          "@qianO33/mcp-excel-server",
+          "@qian33/mcp-excel-server",
           "${workspaceFolder}"
         ]
       }

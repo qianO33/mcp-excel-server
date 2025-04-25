@@ -1,5 +1,5 @@
 {
-  "name": "mcp-excel-server",
+  "name": "@qian33/mcp-excel-server",
   "version": "1.0.0",
   "private": false,
   "description": "Model Excel servers",
@@ -11,7 +11,7 @@
     "mcp-excel-server": "dist/index.js"
   },
   "files": [
-    "dist"
+    "dist/*"
   ],
   "workspaces": [
     "src/*"
