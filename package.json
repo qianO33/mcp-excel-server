@@ -21,7 +21,8 @@
     "dev:watch": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts '/Users/qian/Desktop'",
     "prepare": "npm run build",
     "watch": "tsc --watch",
-    "build": "tsc"
+    "build": "tsc",
+    "publish": "npm publish --access public"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.10.2",
