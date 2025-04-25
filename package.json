@@ -3,19 +3,26 @@
   "version": "1.0.0",
   "private": false,
   "description": "Model Excel servers",
+  "author": "qianO33",
+  "license": "ISC",
+  "bugs": "https://github.com/qianO33/mcp-excel-server/issues",
   "main": "src/index.ts",
+  "bin": {
+    "mcp-excel-server": "dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
   "workspaces": [
     "src/*"
   ],
   "scripts": {
     "dev": "tsc && node dist/src/index.js",
     "dev:watch": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts '/Users/qian/Desktop'",
+    "prepare": "npm run build",
     "watch": "tsc --watch",
-    "build": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc"
   },
-  "author": "qianO33",
-  "license": "ISC",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.10.2",
     "express": "^5.1.0",
