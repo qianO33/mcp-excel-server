@@ -1,0 +1,33 @@
+{
+  "name": "mcp-excel-server",
+  "version": "1.0.0",
+  "private": false,
+  "description": "Model Excel servers",
+  "main": "src/index.ts",
+  "workspaces": [
+    "src/*"
+  ],
+  "scripts": {
+    "dev": "tsc && node dist/src/index.js",
+    "dev:watch": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts '/Users/qian/Desktop'",
+    "watch": "tsc --watch",
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "qianO33",
+  "license": "ISC",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.10.2",
+    "express": "^5.1.0",
+    "typescript": "^5.8.3",
+    "xlsx": "^0.18.5",
+    "zod": "^3.24.3",
+    "zod-to-json-schema": "^3.24.5"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.1",
+    "@types/node": "^20.10.5",
+    "nodemon": "^3.1.10",
+    "ts-node": "^10.9.2"
+  }
+}
