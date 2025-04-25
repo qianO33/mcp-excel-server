@@ -5,6 +5,7 @@
   "description": "Model Excel servers",
   "author": "qianO33",
   "license": "ISC",
+  "homepage": "https://www.npmjs.com/package/@qian33/mcp-excel-server",
   "bugs": "https://github.com/qianO33/mcp-excel-server/issues",
   "main": "src/index.ts",
   "bin": {
