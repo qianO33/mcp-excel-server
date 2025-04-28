@@ -1,11 +1,13 @@
-FROM node:18.22-alpine AS builder
+FROM node:18-alpine AS builder
 
 WORKDIR /app
 
-COPY src/mcpExcelServer /app
+RUN npm install -g pnpm
+
+COPY ./ /app
 COPY tsconfig.json /tsconfig.json
 
-RUN --mount=type=cache,target=/root/.npm npm install
+RUN --mount=type=cache,target=/root/.npm pnpm install
 
 RUN --mount=type=cache,target=/root/.npm-production npm ci --ignore-scripts --omit-dev
 
