@@ -1,12 +1,17 @@
 {
   "name": "@qian33/mcp-excel-server",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "private": false,
   "description": "Model Excel servers",
   "author": "qianO33",
   "license": "ISC",
   "homepage": "https://www.npmjs.com/package/@qian33/mcp-excel-server",
   "bugs": "https://github.com/qianO33/mcp-excel-server/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qianO33/mcp-excel-server.git"
+  },
+
   "main": "src/index.ts",
   "bin": {
     "mcp-excel-server": "dist/src/index.js"
@@ -18,8 +23,8 @@
     "src/*"
   ],
   "scripts": {
-    "dev": "tsc && node dist/src/index.js",
-    "dev:watch": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts '/Users/qian/Desktop'",
+    "dev": "tsc && node dist/index.js",
+    "dev:watch": "nodemon --watch 'index.ts' 'src/**/*.ts' --exec 'ts-node' src/index.ts '/Users/qian/Desktop'",
     "prepare": "npm run build",
     "watch": "tsc --watch",
     "build": "tsc",

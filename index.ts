@@ -11,8 +11,8 @@ import {
 import { zodToJsonSchema } from 'zod-to-json-schema';
 import z from 'zod';
 import { readFile, utils } from 'xlsx';
-import { getArgs, validatePath, checkDirectory, allowedDirectories } from "./utils";
-import { excelOptions } from './const';
+import { getArgs, validatePath, checkDirectory, allowedDirectories } from "./src/utils";
+import { excelOptions } from './src/const';
 
 // Command line argument parsing
 const args = getArgs();
@@ -33,8 +33,8 @@ const server = new Server(
   {
     capabilities: {
       tools: {},
-      prompts: {},
-      resources: {},
+      // prompts: {},
+      // resources: {},
     },
   }
 );
