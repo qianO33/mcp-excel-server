@@ -72,6 +72,23 @@ Add the following configuration to your : `claude_desktop_config.json`
 }
 ```
 
+#### Bunx Method
+
+```json
+{
+  "mcpServers": {
+    "mcp-excel-server": {
+      "command": "bunx",
+      "args": [
+        "@qian33/mcp-excel-server",
+        "/Users/username/Desktop",
+        "/path/to/other/allowed/dir"
+      ]
+    }
+  }
+}
+```
+
 ## Usage with VS Code
 
 For quick installation, click the installation buttons below...
