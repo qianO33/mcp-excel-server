@@ -1,6 +1,6 @@
 {
   "name": "@qian33/mcp-excel-server",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "private": false,
   "description": "Model Excel servers",
   "author": "qianO33",
@@ -13,7 +13,7 @@
   },
   "main": "src/index.ts",
   "bin": {
-    "mcp-excel-server": "dist/src/index.js"
+    "mcp-excel-server": "dist/index.js"
   },
   "files": [
     "dist/*"
