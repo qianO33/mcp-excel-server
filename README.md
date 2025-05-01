@@ -33,6 +33,16 @@ npm install @qian33/mcp-excel-server
   - Input: `path` (string)
   - Uses UTF-8 encoding for text files
 
+#### 🎒Writing Operations
+
+- **write_file_content**
+  - Creates a new file or overwrites an existing one with the specified content
+  - Inputs:
+    - `path` (string): File location to write to
+    - `content` (string): Content to write to the file
+  - Uses UTF-8 encoding for text files
+  - Returns confirmation message upon successful write
+
 #### 📁 Directory Operations
 
 - **list_directory**
@@ -46,6 +56,24 @@ npm install @qian33/mcp-excel-server
   - Reads the Excel contents of a file
   - Input: `path` (string)
   - Uses UTF-8 encoding for excel file
+
+- **get_online_excel_content**
+  - Fetches and reads Excel content from a URL
+  - Input: `path` (string): ONLINE URL to the Excel file
+  - Returns the Excel data as a JSON array
+  - Useful for reading Excel files hosted on remote servers
+
+#### 📒 Writing Excel
+
+- **write_excel_content**
+  - Creates a new Excel file or overwrites an existing one with the specified data
+  - Inputs:
+    - `path` (string): File location for the Excel file
+    - `content` (string or array): JSON data to write to the Excel file
+      - Accepts either a JSON string or a direct array of objects
+      - Each object represents a row in the Excel sheet
+  - Automatically creates a workbook with a 'Sheet1' worksheet
+  - Returns confirmation message upon successful write
 
 ## 🔧 Usage Guide
 
