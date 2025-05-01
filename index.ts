@@ -10,14 +10,15 @@ import {
 } from "@modelcontextprotocol/sdk/types.js";
 import { zodToJsonSchema } from 'zod-to-json-schema';
 import z from 'zod';
-import { readFile, utils } from 'xlsx';
+import { readFile, utils, read, writeFile } from 'xlsx';
 import { getArgs, validatePath, checkDirectory, allowedDirectories } from "./src/utils";
 import { excelOptions } from './src/const';
 import {
   ReadFileArgsSchema,
   WriteFileArgsSchema,
   ListDirectoryArgsSchema,
-  ReadExcelFileArgsSchema
+  ReadExcelFileArgsSchema,
+  WriteExcelFileArgsSchema,
 } from './src/const/schema';
 
 // Command line argument parsing
@@ -72,6 +73,18 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
         description: "read excel file content",
         inputSchema: zodToJsonSchema(ReadExcelFileArgsSchema) as ToolInput,
         required: ["path"],
+      },
+      {
+        name: 'get_online_excel_content',
+        description: 'get online excel content',
+        inputSchema: zodToJsonSchema(ReadFileArgsSchema) as ToolInput,
+        required: ['path'],
+      },
+      {
+        name: 'write_excel_content',
+        description: 'write excel content',
+        inputSchema: zodToJsonSchema(WriteExcelFileArgsSchema) as ToolInput,
+        required: ['path', 'content'],
       },
     ],
     prompts: [],
@@ -143,6 +156,52 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         return {
           content: [{type: "text", text: JSON.stringify(data)}],
         };
+      }
+
+      case 'get_online_excel_content': {
+        const parsed = ReadFileArgsSchema.safeParse(args);
+        if (!parsed.success) {
+          throw new Error(`Invalid arguments for get_online_excel_content: ${parsed.error}`);
+        }
+
+        const file = await (await fetch(parsed.data.path)).arrayBuffer();
+        const wb = read(file);
+        const ws = wb.Sheets[wb.SheetNames[0]];
+        const data = utils.sheet_to_json(ws);
+
+        return {
+          content: [{type: "text", text: JSON.stringify(data)}],
+        };
+      }
+
+      case 'write_excel_content': {
+        const parsed = WriteExcelFileArgsSchema.safeParse(args);
+        if (!parsed.success) {
+          throw new Error(`Invalid arguments for write_excel_content: ${parsed.error}`);
+        }
+
+        const validPath = await validatePath(parsed.data.path);
+        const jsonData = parsed.data.content; // 你应该从 args 中获取 JSON 数组数据
+
+        try {
+          const excelData = typeof jsonData === 'string' ? JSON.parse(jsonData) : jsonData;
+
+          const worksheet = utils.json_to_sheet(excelData);
+          const workbook = utils.book_new();
+          utils.book_append_sheet(workbook, worksheet, 'Sheet1');
+
+          writeFile(workbook, validPath, { compression: true });
+
+          return {
+            content: [{ type: 'text', text: `Successfully wrote to ${parsed.data.path}` }],
+          };
+        } catch (err) {
+          console.log(err)
+          return {
+            // @ts-ignore
+            content: [{ type: 'text', text: `Error: ${err.message}` }],
+          };
+        }
       }
 
       default:
